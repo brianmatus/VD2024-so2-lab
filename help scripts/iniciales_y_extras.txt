@@ -1,0 +1,18 @@
+# Es normal si les sale un error de que kernel-package no existe. De ser asi, solo quitenlo de la lista
+sudo apt-get install build-essential kernel-package libncurses5-dev fakeroot wget bzip2 openssl
+sudo apt-get install build-essential libncurses-dev bison flex libssl-dev libelf-dev
+
+#Copiar el archivo de config por primera vez
+cp -v /boot/config-$(uname -r)
+
+# Si el kernel instalado no aparece a la hora del boot, iniciar normal en cualquier kernel y ejecutar:
+sudo update-grub2
+
+
+# Si se topan con el error:
+# make[3]: *** No rule to make target 'debian/canonical-certs.pem', needed by 'certs/x509_certificate_list'.  Stop.
+# Ejecuten esto en la raiz del proyecto:
+scripts/config --disable SYSTEM_TRUSTED_KEYS
+scripts/config --disable SYSTEM_REVOCATION_KEYS
+
+# Luego de ejecutar esos, la proxima vez que intenten compilar les pedira acerca de los certificados a generar, darle ENTER a todo
