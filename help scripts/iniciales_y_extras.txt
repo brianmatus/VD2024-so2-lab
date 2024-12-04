@@ -3,7 +3,7 @@ sudo apt-get install build-essential kernel-package libncurses5-dev fakeroot wge
 sudo apt-get install build-essential libncurses-dev bison flex libssl-dev libelf-dev
 
 #Copiar el archivo de config por primera vez
-cp -v /boot/config-$(uname -r)
+cp -v /boot/config-$(uname -r) .config
 
 # Si el kernel instalado no aparece a la hora del boot, iniciar normal en cualquier kernel y ejecutar:
 sudo update-grub2
