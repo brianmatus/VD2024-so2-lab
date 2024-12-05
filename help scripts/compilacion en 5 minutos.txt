@@ -1,0 +1,56 @@
+1) Descargar el kernel de kernel.org (linux-6.8.tar.xz)
+2)Descomprimirlo
+3) Instalar las dependencias
+sudo apt-get install build-essential libncurses5-dev fakeroot wget bzip2 openssl
+sudo apt-get install build-essential libncurses-dev bison flex libssl-dev libelf-dev
+
+A partir de aca, en el directorio del codigo fuente. Estando como usuario root con "sudo -s"
+
+4) Copiar el archivo de config por primera vez
+cp -v /boot/config-$(uname -r) .config
+
+5) Limpiar el ambiente de compilacion
+make clean
+
+5.5) Modificar la version del kernel en el archivo Makefile que esta en la raiz
+
+Hasta arriba, estara asi:
+
+EXTRAVERSION = 
+EXTRAVERSION = -49-usac1
+
+
+6) Ejecutar los config iniciales:
+make oldconfig
+
+Darle enter a todo
+7) make localmodconfig
+
+8)Deshabilitar los certificados de firma oficiales de Cannonical:
+
+scripts/config --disable SYSTEM_TRUSTED_KEYS
+scripts/config --disable SYSTEM_REVOCATION_KEYS
+
+
+9)Ahora te podes guiar del script "compile_and_install.sh" para compilar e instalar
+Lo copias con nana, bloc de notas o como prefiras
+Lo marcas con "chmod +x compile_and_install.sh" para permitir que se ejecute
+./compile_and_install.sh
+
+Le das que no a todo lo de config (le podes dar enter por defecto)
+
+10)vas por un cafe en lo que se compila
+
+
+11) Le das que si a todos los comandos que te pregunte de install
+Los hace automatico, pero si lo queres hacer manualmente:
+make modules_install
+make install
+make headers_install
+
+
+Debug:
+Si no te sale en la lista de kernels al iniciar o no te inicia, intenta con
+sudo update-grub2
+
+A la hora de encender la VM, cuando salga el logo de VirtualBox, mantener presionado shift
