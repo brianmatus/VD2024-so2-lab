@@ -1,0 +1,5 @@
+ln -s ~/usac-linux-6.8/arch/x86/entry/syscalls/syscall_64.tbl ~/linux-6.8/arch/x86/entry/syscalls/syscall_64.tbl
+
+
+# Este comando es suponiendo que las carpetas del codigo fuente la tienen en el home de su usuario (~).
+Si la tienen en otra carpeta, modificar el comando acorde 
